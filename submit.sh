@@ -1,4 +1,6 @@
-spark-submit \
-  --master spark://192.168.1.101:7077 \
+docker exec -it spark-master spark-submit \
+  --master spark://spark-master:7077 \
   --deploy-mode client \
-  /opt/bitnami/spark/jobs/compute_mean_salary.py
+  --conf spark.authenticate=false \
+  --conf spark.hadoop.security.authentication=simple \
+  /opt/bitnami/spark/jobs/word_count.py
